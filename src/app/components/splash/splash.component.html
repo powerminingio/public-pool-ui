@@ -221,6 +221,31 @@
             </div>
         </div>
 
+        <div class="col-12">
+            <div class="card">
+                <iframe
+                    id="bennet-embed"
+                    src="https://bennet.org/embed/solo-mining-calculator/v1/?theme=dark"
+                    width="100%"
+                    frameborder="0"
+                    scrolling="no"
+                    style="border: none; min-height: 666px"
+                >
+		</iframe>
+                <script><!--
+                    window.addEventListener("message", (e) => {
+                        if (e.origin !== "https://bennet.org") return;
+                        if (e.data && e.data.type === "embed-height") {
+                            const iframe = document.getElementById("bennet-embed");
+                            if (iframe) {
+                                iframe.style.height = e.data.height + "px";
+                            }
+                        }
+                    });
+                --></script>
+            </div>
+        </div>
+
 	<!--
         <div class="col-12">
             <div class="card">
