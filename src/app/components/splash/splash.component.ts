@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { combineLatest, map, Observable, shareReplay } from 'rxjs';
 
@@ -14,7 +14,7 @@ import { AverageTimeToBlockPipe } from 'src/app/pipes/average-time-to-block.pipe
   templateUrl: './splash.component.html',
   styleUrls: ['./splash.component.scss']
 })
-export class SplashComponent {
+export class SplashComponent implements AfterViewInit {
 
   public address: FormControl;
 
@@ -119,5 +119,17 @@ export class SplashComponent {
       }
     };
 
+  }
+
+  ngAfterViewInit(): void {
+    window.addEventListener('message', (event: MessageEvent) => {
+      if (event.origin !== 'https://bennet.org') return;
+      if (event.data && event.data.type === 'embed-height') {
+        const iframe = document.getElementById('bennet-embed');
+        if (iframe) {
+          iframe.style.height = `${event.data.height}px`;
+        }
+      }
+    });
   }
 }
