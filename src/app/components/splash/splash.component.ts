@@ -27,6 +27,7 @@ export class SplashComponent implements AfterViewInit {
   public chartOptions: any;
 
   public stratumURL = '';
+  public stratumURLTLS = '';
 
   private info$: Observable<any>;
 
@@ -40,6 +41,11 @@ export class SplashComponent implements AfterViewInit {
       this.stratumURL = environment.STRATUM_URL;
     } else {
       this.stratumURL = window.location.hostname + ':3333';
+    }
+    if (environment.STRATUM_URL_TLS.length > 1) {
+        this.stratumURLTLS = environment.STRATUM_URL_TLS;
+    } else {
+        this.stratumURLTLS = window.location.hostname + ':4333';
     }
 
     this.blockData$ = this.info$.pipe(map(info => info.blockData));
