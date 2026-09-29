@@ -91,5 +91,9 @@
             <i class="pi pi-star-fill"></i>
         </a>
     </ng-container>
+    <ng-container *ngSwitchCase="'pm'">
+        <a (click)="cancelClick($event)" href="https://hashrate.powermining.io" target="_blank">PM Hashrate
+        </a>
+    </ng-container>
     <ng-container *ngSwitchDefault>{{userAgent}}</ng-container>
 </ng-container>
